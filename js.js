@@ -1,36 +1,30 @@
 //степень
 
 function powerFunc(base,pow){
-    if(base==="0") {
-        alert(0);
-        return;
-    }
-    else if(pow==="0") {
-        alert(1);
-        return;
-    }
-    else {
-        base = +base;
-        pow = +pow;
-        if(!base||!pow){
-            alert('Введите число и степень. Цифрами.');
-            return;
-        }
-    }
+    if(base===0) return 0;
+    else if(pow===0) return 1;
+
         let res=1;
         while(pow>0){
             res*=base;
             pow--;
         }
-        alert(res);
+        return res;
     
 }
 
-let userNumber=prompt("Введите число"),
-    userPow=prompt("Введите степень");
+function test(testValue){
+if(testValue==="0") return +testValue;
+if(!+testValue) { return "nope"}
+return +testValue;
+}
 
-powerFunc(userNumber,userPow);
-  
+let userNumber=test(prompt("Введите число")),
+    userPow=test(prompt("Введите степень"));
+if(userNumber==="nope"||userPow==="nope") alert("Введите число и степень. Цифрами.")
+else alert(powerFunc(userNumber,userPow));
+
+
 
 //вывод аргументов
 
@@ -41,7 +35,6 @@ function logArgsFunc(){
             if(typeof(arguments[i])==="function"){
                 arguments[i]();
                 console.log("A function was called");
-                continue;
             }
             else{
                 console.log(`${arguments[i]}, type ${typeof(arguments[i])} \n`)
